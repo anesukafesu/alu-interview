@@ -2,7 +2,8 @@
 """Module for minOperations(n)
 """
 
-def minOperations(n):    
+
+def minOperations(n):
     """Determines the minimum number of operations required
     to transform a text file with one character to a text
     file with n characters.
@@ -54,10 +55,12 @@ def minOperations(n):
             # Length of clipboard after copying
             clipboard_len_after_copy = len(text_file)
 
-            # Spaces that need filling divided by length of clipboard after copy
+            # Spaces that need filling divided by length
+            # of clipboard after copy
             ratio = remaining_spaces / clipboard_len_after_copy
 
-            # If the ratio is a whole number, we can copy, so function returns true
+            # If the ratio is a whole number, we can copy
+            # so function returns true
             return int(ratio) == ratio
 
         while len(text_file) < n:
