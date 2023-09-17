@@ -55,13 +55,10 @@ def minOperations(n):
             # Length of clipboard after copying
             clipboard_len_after_copy = len(text_file)
 
-            # Spaces that need filling divided by length
-            # of clipboard after copy
-            ratio = remaining_spaces / clipboard_len_after_copy
-
-            # If the ratio is a whole number, we can copy
-            # so function returns true
-            return int(ratio) == ratio
+            # If remaining_spaces is perfectly divisible
+            # by clipboard_len_after_copy, then we should
+            # copy
+            return remaining_spaces % clipboard_len_after_copy == 0
 
         while len(text_file) < n:
             if should_copy_all():
@@ -74,3 +71,8 @@ def minOperations(n):
         return n_operations
     else:
         return 0
+
+
+if __name__ == '__main__':
+    res = minOperations(2147483640)
+    print('minimum operations for 2147483640 chars is:', res)
