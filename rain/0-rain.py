@@ -12,13 +12,13 @@ def rain(walls):
 
 	# Find the highest element to the left of each element
 	highest_left = [0] * n 
-	highest_left[0] = highest_left[0] 
+	highest_left[0] = walls[0] 
 	for i in range(1, n): 
 		highest_left[i] = max(highest_left[i - 1], walls[i]) 
 
 	# Find the highest wall to the right of each 
 	highest_right = [0] * n
-	highest_right[n - 1] = highest_right[n - 1] 
+	highest_right[-1] = walls[-1] 
 	for i in range(n - 2, -1, -1): 
 		highest_right[i] = max(highest_right[i + 1], walls[i]) 
 
