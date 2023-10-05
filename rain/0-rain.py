@@ -1,48 +1,29 @@
 #!/usr/bin/python3
 """Module for the rain function
 """
-def rain(walls = []):
-    """Calculates how much rain a series of walls can hold
-    """
-    number_of_walls = len(walls)
-
-    # Return 0 if there are no walls
-    if number_of_walls == 0:
-        return 0
-    
-    # Finding the highest wall to the left of each of wall
-    highest_left_walls = []
-    max_so_far = 0
-
-    for i in range(number_of_walls):
-        wall = walls[i]
-        if wall > max_so_far:
-            max_so_far = wall
-        
-        highest_left_walls.append(max_so_far)
 
 
-    # Finding the highest wall to the right of each wall
-    highest_right_walls = []
-    max_so_far = 0
+def rain(walls): 
+	"""Function to find the maximum rain collected
+	by a series of walls
+	"""
+	n = len(walls)
+	total_volume = 0
 
-    for i in range(number_of_walls - 1, -1, -1):
-        wall = walls[i]
-        if wall > max_so_far:
-            max_so_far = wall
-        
-        highest_right_walls.append(max_so_far)
-    
-    total_volume = 0
-    
-    # Calculate the amount of water held by each element
-    for i in range(number_of_walls):
-        highest_left_wall = highest_left_walls[i]
-        highest_right_wall = highest_right_walls[i]
-        wall_height = walls[i]
+	# Find the highest element to the left of each element
+	highest_left = [0] * n 
+	highest_left[0] = highest_left[0] 
+	for i in range(1, n): 
+		highest_left[i] = max(highest_left[i - 1], walls[i]) 
 
-        volume = min(highest_left_wall, highest_right_wall) - wall_height
+	# Find the highest wall to the right of each 
+	highest_right = [0] * n
+	highest_right[n - 1] = highest_right[n - 1] 
+	for i in range(n - 2, -1, -1): 
+		highest_right[i] = max(highest_right[i + 1], walls[i]) 
 
-        total_volume += volume
+	# Calculate the accumulated water element by element  
+	for i in range(0, n): 
+		total_volume += min(highest_left[i], highest_right[i]) - walls[i] 
 
-    return total_volume
+	return total_volume 
